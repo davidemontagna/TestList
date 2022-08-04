@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum UserListViewModelUseCases {
+    case getUsers
+}

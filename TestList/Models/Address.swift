@@ -12,5 +12,5 @@ struct Address: Decodable {
     var suite: String
     var city: String
     var zipcode: String
-    var geo: GeoResponse?
+    var geo: Geo?
 }

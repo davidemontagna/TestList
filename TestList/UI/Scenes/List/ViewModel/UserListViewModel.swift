@@ -15,17 +15,28 @@ protocol UserListViewModelDelegate: AnyObject {
 
 class UserListViewModel: NSObject {
     
-    var responseItems: [UserResponse] = []
+    // MARK: - Delegate
+    
+    weak var delegate: UserListViewModelDelegate?
     
     // MARK: - Properties
     
-    var uiitems: [UserResponse] {
-            getUsers()
+    var responseItems: [User] = []
+    var uiitems: [UserListCellUIItem] {
+        return responseItems.map { i in
+            // Creating uiitem
+            return UserListCellUIItem(id: String(i.id),
+                                      name: i.name,
+                                      username: i.username,
+                                      email: i.email,
+                                      phone: i.phone)
         }
     }
     
-    func getUsers() -> DataRequest {
-        return AF.request("https://jsonplaceholder.typicode.com/users").response { response in
+    // MARK: - Public methods
+    
+    func getUsers() {
+        AF.request("https://jsonplaceholder.typicode.com/users").responseDecodable(of: UserResponse.self) { response in
             switch response.result {
             case .failure(let error):
                 self.delegate?.onFailure(error: error.localizedDescription)
@@ -33,5 +44,7 @@ class UserListViewModel: NSObject {
                 self.responseItems = response
                 self.delegate?.onSuccess(.getUsers, nil)
             }
+        }
     }
 }
+

@@ -12,8 +12,8 @@ struct User: Decodable {
     var name: String
     var username: String
     var email: String
-    var address: AddressResponse
+    var address: Address
     var phone: String
     var website: String
-    var company: CompanyResponse
+    var company: Company
 }

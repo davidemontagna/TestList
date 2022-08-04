@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-protocol UserListAdapterDelegate {
-    
-}
-
 class UserListAdapter: NSObject {
     
     // MARK: - Properties
@@ -30,9 +26,7 @@ extension UserListAdapter: UITableViewDataSource {
         let cell: UserListCell = tableView.dequeueReusableCell(for: UserListCell.self, for: indexPath)
         cell.config(with: uiitems[indexPath.row])
         return cell
-    }
-    
-    
+    }   
 }
 
 extension UserListAdapter: UITableViewDelegate {
