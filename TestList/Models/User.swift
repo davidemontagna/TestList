@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct UserResponse: Decodable {
+struct User: Decodable {
     var id: Int
     var name: String
     var username: String
     var email: String
     var address: AddressResponse
     var phone: String
-    var webSite: String
+    var website: String
     var company: CompanyResponse
 }

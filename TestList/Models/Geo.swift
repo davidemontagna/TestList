@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GeoResponse: Decodable {
+struct Geo: Decodable {
     var lat: String
-    var long: String
+    var lng: String
 }

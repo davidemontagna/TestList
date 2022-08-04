@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserListViewController: UIViewController {
+class UsersListViewController: UIViewController {
 
     // MARK: - Outlets
 
@@ -30,6 +30,35 @@ class UserListViewController: UIViewController {
         // Setup TableView
         tableView.delegate = adapter
         tableView.dataSource = adapter
+        // Setup viewModel
+        viewModel.delegate = self
+    }
+}
+
+// MARK: - Extensions
+
+extension UsersListViewController: UserListViewModelDelegate {
+    func onFailure(error: String) {
+        let alert = UIAlertController(title: "Si è verificato un errore",
+                                      message: error,
+                                      preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .cancel,
+                                      handler: { (action: UIAlertAction!) in
+            
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func onSuccess(_ type: UserListViewModelUseCases, _ indexPath: IndexPath?) {
+        switch type {
+        case .getUsers:
+            let users = viewModel.responseItems
+            if(!users.isEmpty) {
+                adapter.uiitems = viewModel.uiitems
+                tableView.reloadData()
+            }
+        }
     }
 }
 

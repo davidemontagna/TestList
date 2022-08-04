@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct AddressResponse: Decodable {
+struct Address: Decodable {
     var street: String
     var suite: String
     var city: String
-    var zipCode: String
-    var geo: GeoResponse
+    var zipcode: String
+    var geo: GeoResponse?
 }

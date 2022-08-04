@@ -28,8 +28,7 @@ extension UserListAdapter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UserListCell = tableView.dequeueReusableCell(for: UserListCell.self, for: indexPath)
-        let data = uiitems[indexPath.item]
-        let cell.config(with: data)
+        cell.config(with: uiitems[indexPath.row])
         return cell
     }
     
