@@ -9,15 +9,17 @@ import UIKit
 
 class UserDetailCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!    
+    @IBOutlet weak var dataUserTextField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    // MARK: - Public methods
     
+    func config(userData: UserDetailUIItem) {
+        titleLabel.text = userData.title
+        dataUserTextField.text = userData.value
+    }
 }

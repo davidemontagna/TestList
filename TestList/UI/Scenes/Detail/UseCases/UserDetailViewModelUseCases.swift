@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum UserDetailViewModelUseCases {
+    case update
+    case delete
+}

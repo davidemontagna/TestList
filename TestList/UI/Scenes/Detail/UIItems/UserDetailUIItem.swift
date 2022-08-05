@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct UserDetailUIItem {
+    let title: String
+    let value: String
+}

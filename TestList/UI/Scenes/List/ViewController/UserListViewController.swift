@@ -27,6 +27,7 @@ class UserListViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(cell: UserListCell.self)
         adapter.uiitems = viewModel.uiitems
+        adapter.delegate = self
         // Setup TableView
         tableView.delegate = adapter
         tableView.dataSource = adapter
@@ -40,13 +41,18 @@ class UserListViewController: UIViewController {
 // MARK: - Extensions
 
 extension UserListViewController: UserListViewModelDelegate {
-    func onSuccess(_ type: UserListViewModelUseCases, _ indexPath: IndexPath?) {
+    func onSuccess(_ type: UserListViewModelUseCases) {
         switch type {
         case .getUsers:
             let users = viewModel.responseItems
             if(!users.isEmpty) {
                 adapter.uiitems = viewModel.uiitems
                 tableView.reloadData()
+            }
+        case .showDetail:
+            if let index = viewModel.selectedItemIndex {
+                let data = viewModel.responseItems[index]
+                self.performSegue(withIdentifier: "user_detail_segue", sender: data)
             }
         }
     }
@@ -64,3 +70,8 @@ extension UserListViewController: UserListViewModelDelegate {
     }
 }
 
+extension UserListViewController: UserListAdapterDelegate {
+    func onCellSelected(at index: Int) {
+        viewModel.showDetail(for: index)
+    }
+}

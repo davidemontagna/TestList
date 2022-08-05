@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 protocol UserListViewModelDelegate: AnyObject {
+    func onSuccess(_ type: UserListViewModelUseCases)
     func onFailure(error: String)
-    func onSuccess(_ type: UserListViewModelUseCases, _ indexPath: IndexPath?)
 }
 
 class UserListViewModel: NSObject {
@@ -21,6 +21,7 @@ class UserListViewModel: NSObject {
     
     // MARK: - Properties
     
+    var selectedItemIndex: Int?
     var responseItems: [User] = []
     var uiitems: [UserListCellUIItem] {
         return responseItems.map { i in
@@ -42,9 +43,14 @@ class UserListViewModel: NSObject {
                 self.delegate?.onFailure(error: error.localizedDescription)
             case .success(let response):
                 self.responseItems = response
-                self.delegate?.onSuccess(.getUsers, nil)
+                self.delegate?.onSuccess(.getUsers)
             }
         }
+    }
+    
+    func showDetail(for index: Int) {
+        selectedItemIndex = index
+        delegate?.onSuccess(.showDetail)
     }
 }
 

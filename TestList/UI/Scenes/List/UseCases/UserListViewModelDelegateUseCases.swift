@@ -9,4 +9,5 @@ import Foundation
 
 enum UserListViewModelUseCases {
     case getUsers
+    case showDetail
 }

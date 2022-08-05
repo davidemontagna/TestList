@@ -8,7 +8,15 @@
 import Foundation
 import UIKit
 
+protocol UserListAdapterDelegate {
+    func onCellSelected(at index: Int)
+}
+
 class UserListAdapter: NSObject {
+    
+    // MARK: - Delegate
+    
+    var delegate: UserListAdapterDelegate?
     
     // MARK: - Properties
     
@@ -26,7 +34,11 @@ extension UserListAdapter: UITableViewDataSource {
         let cell: UserListCell = tableView.dequeueReusableCell(for: UserListCell.self, for: indexPath)
         cell.config(with: uiitems[indexPath.row])
         return cell
-    }   
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.onCellSelected(at: indexPath.row)
+    }
 }
 
 extension UserListAdapter: UITableViewDelegate {
