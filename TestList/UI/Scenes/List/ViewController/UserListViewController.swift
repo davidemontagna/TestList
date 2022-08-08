@@ -36,6 +36,12 @@ class UserListViewController: UIViewController {
         // Fetching data
         viewModel.getUsers()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let user = sender as? User, let destination = segue.destination as? UserDetailViewController {
+            destination.viewModel.detailItem = user
+        }
+    }
 }
 
 // MARK: - Extensions

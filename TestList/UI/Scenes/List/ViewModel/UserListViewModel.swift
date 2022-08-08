@@ -26,7 +26,7 @@ class UserListViewModel: NSObject {
     var uiitems: [UserListCellUIItem] {
         return responseItems.map { i in
             // Creating uiitem
-            return UserListCellUIItem(id: String(i.id),
+            return UserListCellUIItem(initials: generateInitials(from: i.name),
                                       name: i.name,
                                       username: i.username,
                                       email: i.email,
@@ -51,6 +51,18 @@ class UserListViewModel: NSObject {
     func showDetail(for index: Int) {
         selectedItemIndex = index
         delegate?.onSuccess(.showDetail)
+    }
+    
+    // MARK: - Private methods
+    
+    private func generateInitials(from name: String) -> String {
+        var initials: String = ""
+        
+        let splittedName = name.split(separator: " ")
+        splittedName.forEach { word in
+            initials = initials + String(word.prefix(1))
+        }
+        return initials.uppercased()
     }
 }
 

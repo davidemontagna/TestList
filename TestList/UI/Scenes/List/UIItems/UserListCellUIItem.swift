@@ -8,7 +8,7 @@
 import Foundation
 
 struct UserListCellUIItem: Decodable {
-    let id: String
+    let initials: String
     let name: String
     let username: String
     let email: String

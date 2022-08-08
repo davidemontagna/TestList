@@ -8,7 +8,7 @@
 import Foundation
 
 protocol UserDetailViewModelDelegate: AnyObject {
-    func onSuccess(_ type: UserDetailViewModelUseCases)
+    func onSuccess(by useCase: UserDetailViewModelUseCases)
     func onFailure(error: String)
 }
 
@@ -20,26 +20,65 @@ class UserDetailViewModel: NSObject {
     
     // MARK: Properties
     
+    var isValid = true
     var detailItem: User!
     var uiitems: [UserDetailUIItem] {
         var items: [UserDetailUIItem] = []
-        items.append(UserDetailUIItem(title: "Nome", value: "Davide"))
-        items.append(UserDetailUIItem(title: "Username", value: "Montagna"))
-//        items.append(UserDetailUIItem(title: "Email", value: detailItem.email))
-//        items.append(UserDetailUIItem(title: "Street address", value: detailItem.address.street))
-//        items.append(UserDetailUIItem(title: "Suite", value: detailItem.address.suite))
-//        items.append(UserDetailUIItem(title: "City", value: detailItem.address.city))
-//        items.append(UserDetailUIItem(title: "Zipcode", value: detailItem.address.zipcode))
-//        items.append(UserDetailUIItem(title: "Phone", value: detailItem.phone))
-//        items.append(UserDetailUIItem(title: "Website", value: detailItem.website))
-//        items.append(UserDetailUIItem(title: "Company name", value: detailItem.company.name))
-//        items.append(UserDetailUIItem(title: "Catch Phrase", value: detailItem.company.catchPhrase))
+        items.append(.header("Informazioni"))
+        items.append(.userData(UserDetailArgs(title: "Nome:", value: detailItem.name, type: .name)))
+        items.append(.userData(UserDetailArgs(title: "Username:", value: detailItem.username, type: .username)))
+        items.append(.separator)
+        items.append(.userData(UserDetailArgs(title: "Email:", value: detailItem.email, type: .email)))
+        items.append(.userData(UserDetailArgs(title: "Phone:", value: detailItem.phone, type: .phone)))
+        items.append(.separator)
+        items.append(.userData(UserDetailArgs(title: "Street address:", value: detailItem.address.street, type: .streetAddress)))
+        items.append(.userData(UserDetailArgs(title: "Suite:", value: detailItem.address.suite, type: .suite)))
+        items.append(.userData(UserDetailArgs(title: "City:", value: detailItem.address.city, type: .city)))
+        items.append(.userData(UserDetailArgs(title: "Zipcode:", value: detailItem.address.zipcode, type: .zipCode)))
+        items.append(.separator)
+        items.append(.userData(UserDetailArgs(title: "Website:", value: detailItem.website, type: .website)))
+        items.append(.userData(UserDetailArgs(title: "Company name:", value: detailItem.company.name, type: .companyName)))
+        items.append(.userData(UserDetailArgs(title: "Catch Phrase:", value: detailItem.company.catchPhrase, type: .catchPhrase)))
+        items.append(.buttons(isValid))
         return items
     }
     
     // MARK: - Public methods
     
-    func showDetail() {
-        
+    func update() {
+        delegate?.onSuccess(by: .update)
+    }
+    
+    func set(value: String, type: UserDetailType) {
+        switch type {
+        case .name:
+            detailItem.name = value
+        case .username:
+            detailItem.username = value
+        case .email:
+            detailItem.email = value
+        case .phone:
+            detailItem.phone = value
+        case .streetAddress:
+            detailItem.address.street = value
+        case .suite:
+            detailItem.address.suite = value
+        case .city:
+            detailItem.address.city = value
+        case .zipCode:
+            detailItem.address.zipcode = value
+        case .website:
+            detailItem.website = value
+        case .companyName:
+            detailItem.company.name = value
+        case .catchPhrase:
+            detailItem.company.catchPhrase = value
+        }
+        checkData()
+    }
+    
+    private func checkData() {
+        isValid = detailItem.name != "" && detailItem.username != "" && detailItem.email != ""
+        delegate?.onSuccess(by: .refresh)
     }
 }

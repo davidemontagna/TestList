@@ -7,19 +7,37 @@
 
 import UIKit
 
-class UserDetailCell: UITableViewCell {
+protocol UserDetailCellDelegate: AnyObject {
+    func dataDidChanged(value: String, type: UserDetailType)
+}
 
+class UserDetailCell: UITableViewCell {
+    
+    // MARK: - Delegate
+    
+    weak var delegate: UserDetailCellDelegate?
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var titleLabel: UILabel!    
     @IBOutlet weak var dataUserTextField: UITextField!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    // MARK: - Properties
+    
+    var infoType: UserDetailType!
 
     // MARK: - Public methods
     
-    func config(userData: UserDetailUIItem) {
-        titleLabel.text = userData.title
-        dataUserTextField.text = userData.value
+    func config(with delegate: UserDetailCellDelegate, and args: UserDetailArgs) {
+        titleLabel.text = args.title
+        dataUserTextField.text = args.value
+        infoType = args.type
+        self.delegate = delegate
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func dataChaged(_ sender: Any) {
+        delegate?.dataDidChanged(value: dataUserTextField.text ?? "", type: infoType)
     }
 }

@@ -12,7 +12,7 @@ class UserListCell: UITableViewCell {
     // MARK: - Outlets
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
@@ -21,7 +21,7 @@ class UserListCell: UITableViewCell {
     
     func config(with user: UserListCellUIItem) {
         nameLabel.text = user.name
-        idLabel.text = user.id
+        initialsLabel.text = user.initials
         usernameLabel.text = user.username
         emailLabel.text = user.email
         phoneLabel.text = user.phone
