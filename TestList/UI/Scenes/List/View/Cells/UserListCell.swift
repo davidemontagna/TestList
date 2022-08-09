@@ -17,6 +17,12 @@ class UserListCell: UITableViewCell {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
+    // MARK: - Lifecycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     // MARK: - Public methods
     
     func config(with user: UserListCellUIItem) {

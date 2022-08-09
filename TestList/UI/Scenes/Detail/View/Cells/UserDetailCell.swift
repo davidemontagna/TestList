@@ -25,6 +25,12 @@ class UserDetailCell: UITableViewCell {
     // MARK: - Properties
     
     var infoType: UserDetailType!
+    
+    // MARK: - Lifecycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 
     // MARK: - Public methods
     
@@ -37,7 +43,7 @@ class UserDetailCell: UITableViewCell {
     
     // MARK: - Actions
     
-    @IBAction func dataChaged(_ sender: Any) {
+    @IBAction func dataChanged(_ sender: Any) {
         delegate?.dataDidChanged(value: dataUserTextField.text ?? "", type: infoType)
     }
 }

@@ -40,6 +40,7 @@ class UserListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let user = sender as? User, let destination = segue.destination as? UserDetailViewController {
             destination.viewModel.detailItem = user
+            destination.delegate = self
         }
     }
 }
@@ -60,6 +61,9 @@ extension UserListViewController: UserListViewModelDelegate {
                 let data = viewModel.responseItems[index]
                 self.performSegue(withIdentifier: "user_detail_segue", sender: data)
             }
+        case .updateUser:
+            adapter.uiitems = viewModel.uiitems
+            tableView.reloadData()
         }
     }
     
@@ -79,5 +83,11 @@ extension UserListViewController: UserListViewModelDelegate {
 extension UserListViewController: UserListAdapterDelegate {
     func onCellSelected(at index: Int) {
         viewModel.showDetail(for: index)
+    }
+}
+
+extension UserListViewController: UserDetailViewControllerDelegate {
+    func updateUser(value: User) {
+        viewModel.updateUser(value: value)
     }
 }

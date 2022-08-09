@@ -8,11 +8,19 @@
 import Foundation
 import UIKit
 
+protocol UserDetailViewControllerDelegate: AnyObject {
+    func updateUser(value: User)
+}
+
 class UserDetailViewController: UIViewController {
     
     // MARK: - Outlets
         
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: - Delegate
+    
+    weak var delegate: UserDetailViewControllerDelegate?
     
     // MARK: - Adapter
     
@@ -47,12 +55,12 @@ extension UserDetailViewController: UserDetailViewModelDelegate {
     func onSuccess(by useCase: UserDetailViewModelUseCases) {
         switch useCase {
         case .update:
+            delegate?.updateUser(value: viewModel.detailItem)
             navigationController?.popViewController(animated: true)
         case .delete:
             break
         case .refresh:
-            adapter.uiitems = viewModel.uiitems
-            tableView.reloadData()
+            break            
         }
     }
     

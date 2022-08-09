@@ -27,7 +27,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
-                            <action selector="dataChaged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="TXa-kC-GcV"/>
+                            <action selector="dataChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="flm-Ic-SHW"/>
                         </connections>
                     </textField>
                 </subviews>
@@ -37,7 +37,6 @@
                     <constraint firstAttribute="bottom" secondItem="RtI-9j-Kq4" secondAttribute="bottom" constant="20" id="8Lx-Z3-jvD"/>
                     <constraint firstItem="RtI-9j-Kq4" firstAttribute="leading" secondItem="nqG-IV-bNs" secondAttribute="leading" id="FH4-gf-dnm"/>
                     <constraint firstItem="nqG-IV-bNs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Miv-4x-MEW"/>
-                    <constraint firstAttribute="trailing" secondItem="RtI-9j-Kq4" secondAttribute="trailing" constant="20" id="cxb-Lz-TRS"/>
                     <constraint firstItem="RtI-9j-Kq4" firstAttribute="top" secondItem="nqG-IV-bNs" secondAttribute="bottom" constant="7.5" id="mA7-bw-AFn"/>
                     <constraint firstItem="RtI-9j-Kq4" firstAttribute="trailing" secondItem="nqG-IV-bNs" secondAttribute="trailing" id="ubG-No-0BU"/>
                 </constraints>

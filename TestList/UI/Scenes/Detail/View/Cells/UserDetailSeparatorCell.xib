@@ -28,7 +28,6 @@
                 <constraints>
                     <constraint firstItem="hlC-DA-SvW" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="FOs-Og-22t"/>
                     <constraint firstItem="hlC-DA-SvW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ORS-mM-bqL"/>
-                    <constraint firstAttribute="trailing" secondItem="hlC-DA-SvW" secondAttribute="trailing" constant="20" id="bcs-ON-Sg7"/>
                     <constraint firstItem="hlC-DA-SvW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wkj-d5-pdw"/>
                 </constraints>
             </tableViewCellContentView>

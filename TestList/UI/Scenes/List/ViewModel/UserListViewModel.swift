@@ -53,6 +53,13 @@ class UserListViewModel: NSObject {
         delegate?.onSuccess(.showDetail)
     }
     
+    func updateUser(value: User) {
+        if let index = selectedItemIndex {
+            responseItems[index] = value
+            delegate?.onSuccess(.updateUser)
+        }
+    }
+    
     // MARK: - Private methods
     
     private func generateInitials(from name: String) -> String {

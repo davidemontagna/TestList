@@ -21,6 +21,12 @@ class UserDetailButtonsCell: UITableViewCell {
     
     var delegate: UserDetailButtonsCellDelegate?
     
+    // MARK: - Lifecycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     // MARK: - Public methods
     
     func config(with delegate: UserDetailButtonsCellDelegate, and args: Bool) {

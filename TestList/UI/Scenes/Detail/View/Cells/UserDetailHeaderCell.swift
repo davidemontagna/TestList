@@ -13,6 +13,12 @@ class UserDetailHeaderCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     
+    // MARK: - Lifecycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
     // MARK: - Public methods
     
     func config(title: String) {

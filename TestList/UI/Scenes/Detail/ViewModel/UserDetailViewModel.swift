@@ -77,8 +77,10 @@ class UserDetailViewModel: NSObject {
         checkData()
     }
     
+    // MARK: - Private methods
+    
     private func checkData() {
-        isValid = detailItem.name != "" && detailItem.username != "" && detailItem.email != ""
+        isValid = detailItem.name != "" && detailItem.username != "" && detailItem.email != ""  && detailItem.phone != "" &&         detailItem.address.street != "" && detailItem.address.suite != "" && detailItem.address.city != "" && detailItem.address.zipcode != "" && detailItem.website != "" && detailItem.company.name != ""
         delegate?.onSuccess(by: .refresh)
     }
 }
