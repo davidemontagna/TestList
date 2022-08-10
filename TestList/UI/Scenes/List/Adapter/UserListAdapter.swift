@@ -21,6 +21,12 @@ class UserListAdapter: NSObject {
     // MARK: - Properties
     
     var uiitems: [UserListCellUIItem] = []
+    
+    // MARK: - Adapter Lifecycle
+    
+    init(delegate: UserListAdapterDelegate) {
+        self.delegate = delegate
+    }
 }
 
 // MARK: - Extensions

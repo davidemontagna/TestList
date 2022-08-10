@@ -22,6 +22,12 @@ class UserDetailAdapter: NSObject {
     // MARK: - Properties
     
     var uiitems: [UserDetailUIItem] = []
+    
+    // MARK: - Adapter Lifecycle
+    
+    init(delegate: UserDetailAdapterDelegate) {
+        self.delegate = delegate
+    }
 }
 
 // MARK: - Extensions

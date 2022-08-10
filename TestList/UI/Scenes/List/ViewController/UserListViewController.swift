@@ -15,11 +15,11 @@ class UserListViewController: UIViewController {
     
     // MARK: - Adapter
     
-    lazy var adapter = UserListAdapter()
+    lazy var adapter = UserListAdapter(delegate: self)
     
     // MARK: - ViewModel
     
-    lazy var viewModel = UserListViewModel()
+    lazy var viewModel = UserListViewModel(delegate: self)
     
     // MARK: - Lifecycle
     
@@ -27,12 +27,9 @@ class UserListViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(cell: UserListCell.self)
         adapter.uiitems = viewModel.uiitems
-        adapter.delegate = self
         // Setup TableView
         tableView.delegate = adapter
         tableView.dataSource = adapter
-        // Setup viewModel
-        viewModel.delegate = self
         // Fetching data
         viewModel.getUsers()
     }

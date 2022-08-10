@@ -43,6 +43,12 @@ class UserDetailViewModel: NSObject {
         return items
     }
     
+    // MARK: - ViewModel Lifecycle
+    
+    init(delegate: UserDetailViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
     // MARK: - Public methods
     
     func update() {

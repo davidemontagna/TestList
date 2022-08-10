@@ -24,11 +24,11 @@ class UserDetailViewController: UIViewController {
     
     // MARK: - Adapter
     
-    lazy var adapter = UserDetailAdapter()
+    lazy var adapter = UserDetailAdapter(delegate: self)
     
     // MARK: - ViewModel
     
-    lazy var viewModel = UserDetailViewModel()
+    lazy var viewModel = UserDetailViewModel(delegate: self)
     
     // MARK: - Lifecycle
     
@@ -42,10 +42,6 @@ class UserDetailViewController: UIViewController {
         // Setup TableView
         tableView.dataSource = adapter
         tableView.delegate = adapter
-        // Setup viewModel
-        viewModel.delegate = self
-        // Setup adapter
-        adapter.delegate = self
     }
 }
 

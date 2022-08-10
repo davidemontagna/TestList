@@ -34,6 +34,12 @@ class UserListViewModel: NSObject {
         }
     }
     
+    // MARK: ViewModel Lifecycle
+    
+    init(delegate: UserListViewModelDelegate) {
+        self.delegate = delegate
+    }
+    
     // MARK: - Public methods
     
     func getUsers() {
